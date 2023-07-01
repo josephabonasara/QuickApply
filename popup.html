@@ -9,11 +9,18 @@
     <div class="popup">
       <h1>Customize Your Cover Letter</h1>
       <label for="coverLetterContent">Cover Letter:</label>
-      <textarea id="coverLetterContent"></textarea>
-      <input type="file" id="coverLetterFile" accept=".doc, .docx">
+      <!-- <textarea id="cover-letter" rows="10" cols="50"></textarea> -->
+      <div class="span8">
+        <div id="cover-letter" class="well">
+        </div>
+      </div>
+      <input type="file" id="document" accept=".doc, .docx">
       <button id="convertToPDF">Convert to PDF</button>
     </div>
   </div>
+  <script src="mammoth.browser.min.js"></script>
+  <script src="demo.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>
+

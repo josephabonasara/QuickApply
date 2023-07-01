@@ -1,42 +1,27 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const coverLetterContentInput = document.getElementById('coverLetterContent');
-    const coverLetterFileInput = document.getElementById('coverLetterFile');
-    const convertToPDFButton = document.getElementById('convertToPDF');
-  
-    // Retrieve the stored cover letter content
-    chrome.storage.local.get('coverLetterContent', (data) => {
-      const { coverLetterContent } = data;
-      // Pre-fill the cover letter content with stored data
-      coverLetterContentInput.value = coverLetterContent || '';
-  
-      // Update the cover letter content when the user makes changes
-      coverLetterContentInput.addEventListener('input', (event) => {
-        // Update the cover letter content in storage
-        chrome.storage.local.set({ coverLetterContent: event.target.value });
+(function() {
+    fetch('coverletter.docx')
+      .then(response => response.arrayBuffer())
+      .then(arrayBuffer => {
+        mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
+          .then(displayResult)
+          .catch(error => console.error(error));
       });
-    });
   
-    // Handle file upload
-    coverLetterFileInput.addEventListener('change', (event) => {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-          const content = event.target.result;
-          // Convert the Word document content to plain text and update the cover letter content
-          coverLetterContentInput.value = convertWordToPlainText(content);
-        };
-        reader.readAsText(file);
-      }
-    });
+    function displayResult(result) {
+      var coverLetterDiv = document.getElementById('cover-letter');
+      coverLetterDiv.innerHTML = result.value;
   
-    // Function to convert Word document content to plain text
-    function convertWordToPlainText(content) {
-      // Implement the necessary logic to convert Word document to plain text
-      // You can use libraries or APIs specifically designed for this purpose
-      // Here's a simple example using regular expressions to remove formatting:
-      const plainText = content.replace(/<\/?[^>]+(>|$)/g, '');
-      return plainText;
+      // Make the cover letter content editable
+      coverLetterDiv.contentEditable = true;
+      coverLetterDiv.addEventListener('input', saveCoverLetter);
     }
-  });
+  
+    function saveCoverLetter() {
+      // Retrieve the updated cover letter content
+      var coverLetterContent = document.getElementById('cover-letter').innerHTML;
+  
+      // TODO: Implement the logic to save the updated cover letter content
+      // You can use localStorage, a backend API, or any other method to save the content
+    }
+  })();
   
