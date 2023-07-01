@@ -1,4 +1,4 @@
-(function() {
+  (function() {
     fetch('coverletter.docx')
       .then(response => response.arrayBuffer())
       .then(arrayBuffer => {
@@ -8,12 +8,29 @@
       });
   
     function displayResult(result) {
-      var coverLetterDiv = document.getElementById('cover-letter');
-      coverLetterDiv.innerHTML = result.value;
+      var coverLetterContent = result.value;
   
-      // Make the cover letter content editable
-      coverLetterDiv.contentEditable = true;
-      coverLetterDiv.addEventListener('input', saveCoverLetter);
+      // Retrieve user input values from Chrome storage
+      chrome.storage.sync.get(['companyName', 'positionName', 'location'], function(items) {
+        var companyName = items.companyName || '';
+        var positionName = items.positionName || '';
+        var location = items.location || '';
+  
+        // Replace placeholders in cover letter content
+        coverLetterContent = coverLetterContent.replaceAll("[Company Name]", companyName);
+        coverLetterContent = coverLetterContent.replaceAll("[Position]", positionName);
+        coverLetterContent = coverLetterContent.replaceAll("[Location]", location);
+  
+        // Set the modified cover letter content in the output element
+        var coverLetterDiv = document.getElementById('cover-letter');
+        coverLetterDiv.innerHTML = result.value;
+        coverLetterDiv.innerHTML = coverLetterContent;
+        coverLetterDiv.contentEditable = true;
+        coverLetterDiv.addEventListener('input', saveCoverLetter);
+        var messageHtml = result.messages.map(function(message) {
+          return '<li class="' + message.type + '">' + escapeHtml(message.message) + "</li>";
+        }).join("");
+      });
     }
   
     function saveCoverLetter() {

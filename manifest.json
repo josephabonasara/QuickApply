@@ -3,7 +3,7 @@
     "name": "Custom Cover Letter Extension",
     "version": "1.0",
     "action": {
-      "default_popup": "popup.html",
+      "default_popup": "questions.html",
       "default_icon": {
         // "16": "icon16.png",
         // "48": "icon48.png",
