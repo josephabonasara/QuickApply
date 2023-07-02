@@ -32,13 +32,23 @@
         }).join("");
       });
     }
-  
+
     function saveCoverLetter() {
-      // Retrieve the updated cover letter content
-      var coverLetterContent = document.getElementById('cover-letter').innerHTML;
-  
-      // TODO: Implement the logic to save the updated cover letter content
-      // You can use localStorage, a backend API, or any other method to save the content
-    }
-  })();
+        // Retrieve the updated cover letter content
+        var coverLetterContent = document.getElementById('cover-letter').value;
+    
+        // Generate a PDF from the cover letter content
+        var pdf = new jsPDF();
+        pdf.fromHTML(coverLetterContent, 15, 15, {
+          width: 180
+        }, function() {
+          // Save the generated PDF
+          pdf.save('cover_letter.pdf');
+        });
+      }
+    
+      // Attach click event listener to the "Convert to PDF" button
+      var convertToPDFButton = document.getElementById('convertToPDF');
+      convertToPDFButton.addEventListener('click', saveCoverLetter);
+    })();
   
