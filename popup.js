@@ -16,10 +16,17 @@
         var positionName = items.positionName || '';
         var location = items.location || '';
   
+        var companyNameRegex = /\[Company Name\]/g;
+        var positionNameRegex = /\[Position\]/g;
+        var locationRegex = /\[Location\]/g;
+
+        coverLetterContent = coverLetterContent.replace(companyNameRegex, companyName);
+        coverLetterContent = coverLetterContent.replace(positionNameRegex, positionName);
+        coverLetterContent = coverLetterContent.replace(locationRegex, location);
         // Replace placeholders in cover letter content
-        coverLetterContent = coverLetterContent.replaceAll("[Company Name]", companyName);
-        coverLetterContent = coverLetterContent.replaceAll("[Position]", positionName);
-        coverLetterContent = coverLetterContent.replaceAll("[Location]", location);
+        // coverLetterContent = coverLetterContent.replaceAll("[Company Name]", companyName);
+        // coverLetterContent = coverLetterContent.replaceAll("[Position]", positionName);
+        // coverLetterContent = coverLetterContent.replaceAll("[Location]", location);
   
         // Set the modified cover letter content in the output element
         var coverLetterDiv = document.getElementById('cover-letter');
@@ -41,11 +48,11 @@
   
     function saveCoverLetter() {
       // Retrieve the updated cover letter content
-      var coverLetterContent = "<div style='font-size:6px; padding: 05px 05px; width:300px;'>"+ document.getElementById('cover-letter').innerHTML +"</div>";
+      var coverLetterContent = "<div style='font-size: 6px; font-family: Times New Roman; padding: 35px 30px; width: 255px;'>"+ document.getElementById('cover-letter').innerHTML +"</div>";
   
       // Generate a PDF from the cover letter content
       var pdf = new jsPDF('p', 'pt', 'a4');
-      pdf.setFont("Times New Roman");
+      pdf.setFont("arial", "bold");
     pdf.setFontSize(6);
         
 
