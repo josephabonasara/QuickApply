@@ -1,20 +1,21 @@
 {
-    "manifest_version": 3,
+    "manifest_version": 2,
     "name": "Custom Cover Letter Extension",
     "version": "1.0",
-    "action": {
-      "default_popup": "questions.html",
-      "default_icon": {
-        // "16": "icon16.png",
-        // "48": "icon48.png",
-        // "128": "icon128.png"
-      }
-    },
-    "permissions": ["storage"],
-    "icons": {
+    "browser_action": {
+    "default_popup": "questions.html"
+    // "default_icon": {
     //   "16": "icon16.png",
     //   "48": "icon48.png",
     //   "128": "icon128.png"
-    }
+    // }
+    },
+    "permissions": ["storage"],
+    "icons": {
+    // "16": "icon16.png",
+    // "48": "icon48.png",
+    // "128": "icon128.png"
+    },
+    "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js https://html2canvas.hertzen.com/dist/html2canvas.min.js; object-src 'self'"
   }
   

@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Custom Cover Letter Extension</title>
-  <link rel="stylesheet" type="text/css" href="popup.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <title>Custom Cover Letter Extension</title>
+    <link rel="stylesheet" type="text/css" href="popup.css">
+    <style>
+        #cover-letter {
+            font-size: 12px !important;
+        }
+    </style>
 </head>
 <body>
-  <div class="overlay">
-    <div class="popup">
-      <h1>Customize Your Cover Letter</h1>
-      <label for="coverLetterContent">Cover Letter:</label>
-      <!-- <textarea id="cover-letter" rows="10" cols="50"></textarea> -->
-      <div class="span8">
-        <div id="cover-letter" class="well">
+    <div class="overlay">
+        <div class="popup">
+            <h1>Customize Your Cover Letter</h1>
+            <label for="coverLetterContent">Cover Letter:</label>
+            <div class="span8">
+                <div id="cover-letter" class="well">
+                    <!-- Placeholders for cover letter content -->
+                    [Company Name]
+                    [Position]
+                    [Location]
+                </div>
+            </div>
+            <button id="convertToPDF">Convert to PDF</button>
         </div>
-      </div>
-      <button id="convertToPDF">Convert to PDF</button>
     </div>
-  </div>
-  <script src="mammoth.browser.min.js"></script>
-  <script src="popup.js"></script>
-  <script src="jspdf.umd.min.js"></script> <!-- Include the jsPDF library -->
-
+    <script src="mammoth.browser.min.js"></script>
+    <script src="popup.js"></script>
+    <script src="node_modules/jspdf/dist/jspdf.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </body>
 </html>
-

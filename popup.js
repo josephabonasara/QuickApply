@@ -1,4 +1,4 @@
-  (function() {
+(function() {
     fetch('coverletter.docx')
       .then(response => response.arrayBuffer())
       .then(arrayBuffer => {
@@ -23,32 +23,42 @@
   
         // Set the modified cover letter content in the output element
         var coverLetterDiv = document.getElementById('cover-letter');
-        coverLetterDiv.innerHTML = result.value;
         coverLetterDiv.innerHTML = coverLetterContent;
         coverLetterDiv.contentEditable = true;
         coverLetterDiv.addEventListener('input', saveCoverLetter);
         var messageHtml = result.messages.map(function(message) {
           return '<li class="' + message.type + '">' + escapeHtml(message.message) + "</li>";
         }).join("");
+  
+        // Apply font style and size to the cover letter content
+        coverLetterDiv.style.fontFamily = 'Times New Roman';
+        coverLetterDiv.style.fontSize = '12px';
+        coverLetterDiv.style.margin = '0';
+        coverLetterDiv.style.padding = '0';
+        coverLetterDiv.style.lineHeight = '1.5';
       });
     }
-
+  
     function saveCoverLetter() {
-        // Retrieve the updated cover letter content
-        var coverLetterContent = document.getElementById('cover-letter').value;
-    
-        // Generate a PDF from the cover letter content
-        var pdf = new jsPDF();
-        pdf.fromHTML(coverLetterContent, 15, 15, {
-          width: 180
-        }, function() {
+      // Retrieve the updated cover letter content
+      var coverLetterContent = "<div style='font-size:6px; padding: 05px 05px; width:300px;'>"+ document.getElementById('cover-letter').innerHTML +"</div>";
+  
+      // Generate a PDF from the cover letter content
+      var pdf = new jsPDF('p', 'pt', 'a4');
+      pdf.setFont("Times New Roman");
+    pdf.setFontSize(6);
+        
+
+      pdf.html(coverLetterContent, {
+        callback: function(pdf) {
           // Save the generated PDF
           pdf.save('cover_letter.pdf');
-        });
-      }
-    
-      // Attach click event listener to the "Convert to PDF" button
-      var convertToPDFButton = document.getElementById('convertToPDF');
-      convertToPDFButton.addEventListener('click', saveCoverLetter);
-    })();
+        }
+      });
+    }
+  
+    // Attach click event listener to the "Convert to PDF" button
+    var convertToPDFButton = document.getElementById('convertToPDF');
+    convertToPDFButton.addEventListener('click', saveCoverLetter);
+  })();
   

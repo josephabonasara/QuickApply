@@ -3,6 +3,7 @@
     "fs": "^0.0.1-security",
     "global": "^4.4.0",
     "jspdf": "^2.5.1",
-    "mammoth": "^1.6.0"
+    "mammoth": "^1.6.0",
+    "print-html-to-pdf": "^1.0.8"
   }
 }
