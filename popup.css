@@ -25,6 +25,9 @@ body {
     text-align: center;
     width: 400px;
   }
+  ul{
+    padding-inline: 25px;
+  }
   
   h1 {
     font-size: 24px;

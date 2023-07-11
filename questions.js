@@ -1,4 +1,6 @@
-document.getElementById("continueButton").addEventListener("click", function() {
+document.getElementById("coverLetterForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Prevent the default form submission behavior
+
     // Get user input values
     var companyName = document.getElementById("company-name").value;
     var positionName = document.getElementById("position-name").value;

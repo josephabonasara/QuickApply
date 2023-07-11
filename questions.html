@@ -8,16 +8,18 @@
 <body>
   <div class="overlay">
     <div class="popup">
-      <h1>Customize Your Cover Letter</h1>
-      <label for="company-name">Company Name:</label>
-      <input type="text" id="company-name" placeholder="Company Name">
-      <label for="position-name">Position:</label>
-      <input type="text" id="position-name" placeholder="Position Name">
-      <label for="location">Location:</label>
-      <input type="text" id="location" placeholder="Location">
-      <button id="continueButton">Continue</button>
-
-    </div>
+        <h1>Customize Your Cover Letter</h1>
+        <form id="coverLetterForm">
+          <label style='text-align:left; font-weight: 200;' for="company-name">Company Name</label>
+          <input style='margin-bottom: 17px;' type="text" id="company-name" placeholder="Company Name" required>
+          <label style='text-align:left; font-weight: 200;' for="position-name">Position</label>
+          <input style='margin-bottom: 17px; 'type="text" id="position-name" placeholder="Position Name" required>
+          <label style='text-align:left; font-weight: 200;' for="location">Location</label>
+          <input style='margin-bottom: 17px;' type="text" id="location" placeholder="Location" required>
+          <button id="continueButton" type="submit">Continue</button>
+        </form>
+      </div>
+      
   </div>
   <script src="questions.js"></script>
 </body>
